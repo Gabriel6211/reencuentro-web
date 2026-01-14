@@ -18,10 +18,3 @@
 - **Mapping**: PostGIS for geographic queries
 - **Deployment**: Vercel
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+ and npm
-- Supabase account
-- Cloudflare account (for R2)
