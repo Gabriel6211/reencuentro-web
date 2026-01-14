@@ -25,8 +25,3 @@
 - Node.js 18+ and npm
 - Supabase account
 - Cloudflare account (for R2)
-
-### Installation
-
-1. Clone the repository
-```bash
