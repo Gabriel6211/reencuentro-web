@@ -1,0 +1,70 @@
+:root {
+  /* Warm Earth Tones Palette */
+  --background: hsl(40 33% 97%);
+  --background-secondary: hsl(37 31% 95%);
+  --background-tertiary: hsla(36, 29%, 90%, 0.787);
+  --foreground: hsl(20 20% 20%);
+
+  --card: hsl(40 30% 95%);
+  --card-foreground: hsl(20 20% 20%);
+
+  --popover: hsl(40 33% 97%);
+  --popover-foreground: hsl(20 20% 20%);
+
+  /* Terracotta - Primary */
+  --primary: hsl(16 50% 55%);
+  --primary-hover: hsl(16 50% 45%);
+  --primary-foreground: hsl(40 33% 97%);
+
+  /* Sage Green - Secondary */
+  --secondary: hsl(145 25% 72%);
+  --secondary-foreground: hsl(20 20% 20%);
+
+  /* Warm Beige - Muted */
+  --muted: hsl(35 30% 90%);
+  --muted-foreground: hsl(20 15% 45%);
+
+  /* Soft Amber - Accent */
+  --accent: hsl(35 60% 65%);
+  --accent-foreground: hsl(20 20% 20%);
+
+  /* Status colors */
+  --destructive: hsl(0 60% 50%);
+  --destructive-foreground: hsl(40 33% 97%);
+
+  /* Lost pets - Soft coral */
+  --lost: hsl(15 70% 60%);
+  --lost-foreground: hsl(40 33% 97%);
+
+  /* Found pets - Hopeful teal */
+  --found: hsl(170 35% 50%);
+  --found-foreground: hsl(40 33% 97%);
+
+  /* Adoption - Warm amber */
+  --adoption: hsl(35 70% 55%);
+  --adoption-foreground: hsl(20 20% 20%);
+
+  --border: hsl(35 25% 85%);
+  --input: hsl(35 25% 85%);
+  --ring: hsl(16 50% 55%);
+
+  --radius: hsl(0.75rem);
+
+  /* Typography */
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-soft: 0 4px 20px -4px hsl(20 20% 20% / 0.08);
+  --shadow-card: 0 8px 30px -8px hsl(20 20% 20% / 0.12);
+  --shadow-elevated: 0 20px 50px -15px hsl(20 20% 20% / 0.15);
+
+  --sidebar-background: hsl(40 30% 95%);
+  --sidebar-foreground: hsl(20 20% 20%);
+  --sidebar-primary: hsl(16 50% 55%);
+  --sidebar-primary-foreground: hsl(40 33% 97%);
+  --sidebar-accent: hsl(35 30% 90%);
+  --sidebar-accent-foreground: hsl(20 20% 20%);
+  --sidebar-border: hsl(35 25% 85%);
+  --sidebar-ring: hsl(16 50% 55%);
+}
