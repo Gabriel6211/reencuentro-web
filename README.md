@@ -13,8 +13,37 @@
 ## 🛠️ Tech Stack
 
 - **Frontend**: Next.js 15 (App Router), React, TypeScript, Tailwind CSS
-- **Backend**: Next.js API Routes, Supabase (PostgreSQL + Auth + Real-time)
+- **Backend**: Node.js + Express (separate service), Supabase (PostgreSQL + Auth + Real-time)
 - **Storage**: Cloudflare R2 (image hosting)
 - **Mapping**: PostGIS for geographic queries
-- **Deployment**: Vercel
+- **Deployment**: Vercel (Frontend), Railway/Render/Heroku (Backend)
+
+## 📁 Project Structure
+
+```
+reencuentro/
+├── src/              # Next.js frontend
+├── backend/          # Node.js backend API
+│   ├── src/
+│   │   ├── routes/   # API routes
+│   │   ├── lib/      # Utilities (R2, Supabase)
+│   │   └── middleware/ # Auth middleware
+│   └── package.json
+└── package.json      # Frontend dependencies
+```
+
+## 🚀 Getting Started
+
+### Frontend Setup
+1. Install dependencies: `npm install`
+2. Create `.env.local` with your Supabase and backend URL
+3. Run: `npm run dev`
+
+### Backend Setup
+1. Navigate to backend: `cd backend`
+2. Install dependencies: `npm install`
+3. Create `.env` with R2, Supabase, and server config
+4. Run: `npm run dev`
+
+See `backend/README.md` for detailed backend setup instructions.
 
