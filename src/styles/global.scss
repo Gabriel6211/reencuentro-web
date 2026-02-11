@@ -12,6 +12,14 @@ body {
   overscroll-behavior-y: none;
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+}
+
 // paddings
 :root {
   --container-max: 1600px;
@@ -35,15 +43,8 @@ body {
   box-sizing: border-box;
 }
 
-
 @layer base {
-  * {
-    border-color: hsl(var(--border));
-  }
-
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
     font-family: var(--font-sans);
   }
 
@@ -94,16 +95,15 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--muted));
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground) / 0.3);
-  border-radius: 4px;
+  background: color-mix(in oklab, var(--muted-foreground) 50%, transparent);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground) / 0.5);
+  background: color-mix(in oklab, var(--muted-foreground) 50%, transparent);
 }
 
 /* MultipleImages carousel keyframes */

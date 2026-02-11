@@ -83,7 +83,7 @@ export default function Footer() {
           </div>
         ))}
       </div>
-      <hr className="border-[var(--border)] w-full mt-15 mb-8" />
+      <hr className="border-[var(--border)] w-full mt-16 mb-8" />
       <p className="text-sm text-[var(--muted-foreground)]">
         &copy; {new Date().getFullYear()} Reencuentro. Todos los derechos
         reservados.

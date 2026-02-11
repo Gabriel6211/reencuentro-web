@@ -10,9 +10,10 @@ const buttonClassNames =
 export default function FilterButton({
   children,
   onClick,
+  className,
 }: FilterButtonProps) {
   return (
-    <button onClick={onClick} className={`${buttonClassNames}`}>
+    <button onClick={onClick} className={`${buttonClassNames} ${className}`}>
       {children}
     </button>
   );

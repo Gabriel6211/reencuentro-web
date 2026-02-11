@@ -1,6 +1,7 @@
 import { PutObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { getR2Client } from './client'
+import 'server-only'
 
 function getBucketName(): string {
   const bucketName = process.env.R2_BUCKET_NAME

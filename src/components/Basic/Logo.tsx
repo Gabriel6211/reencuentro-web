@@ -22,7 +22,6 @@ const Logo = ({ size = "md", showText = true, className = "" }: LogoProps) => {
           height={sizes[size].icon}
           viewBox="0 0 48 48"
           fill="none"
-          className="text-primary"
         >
           {/* Main pad */}
           <ellipse cx="24" cy="30" rx="10" ry="8" fill="var(--primary)" />
@@ -45,7 +44,7 @@ const Logo = ({ size = "md", showText = true, className = "" }: LogoProps) => {
           />
         </svg>
         <Heart
-          className="absolute text-primary-foreground"
+          className="absolute"
           style={{
             width: sizes[size].icon * 0.3,
             height: sizes[size].icon * 0.3,

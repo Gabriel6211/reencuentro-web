@@ -63,7 +63,7 @@ export default function PetCard({
           {statusText(status, gender)}
         </p>
         <p
-          className={`absolute top-3 right-3 rounded-md ${status === "lost" ? "bg-lost" : status === "found" ? "bg-found" : "bg-adoption"} px-2 py-1 text-sm text-white`}
+          className={`absolute top-3 right-3 rounded-md ${status === "lost" ? "bg-[var(--lost)]/70" : status === "found" ? "bg-[var(--found)]/70" : "bg-[var(--adoption)]/70"} px-2 py-1 text-sm text-white`}
         >
           {animalTypeText(animalType)}
         </p>

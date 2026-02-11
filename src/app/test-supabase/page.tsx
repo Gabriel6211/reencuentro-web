@@ -6,7 +6,7 @@ import Image from 'next/image'
 export default async function TestPage() {
   const supabase = await createClient()
 
-  const photo = await getPublicUrl('Photo.jpeg')
+  const photo = getPublicUrl('Photo.jpeg')
   
   // This will fail if tables don't exist yet, but will test connection
   const { data, error } = await supabase

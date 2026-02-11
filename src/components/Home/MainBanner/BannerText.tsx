@@ -54,7 +54,7 @@ export default function BannerText() {
         <div className="flex items-center gap-2">
           <div className="rounded-full bg-[var(--adoption)] w-2 h-2" />
           <p className="text-sm text-[var(--foreground)] text-balance">
-            Facil de usar
+            Fácil de usar
           </p>
         </div>
       </div>

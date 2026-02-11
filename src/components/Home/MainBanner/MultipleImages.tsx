@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
 export default function MultipleImages() {
@@ -52,20 +52,43 @@ export default function MultipleImages() {
   const [nextBottomIndex, setNextBottomIndex] = useState(2);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  // Use refs to track current indices without causing interval recreation
+  const bottomIndexRef = useRef(1);
+  const nextBottomIndexRef = useRef(2);
+  const imagesLengthRef = useRef(images.length);
+
+  // Update refs when state changes
+  useEffect(() => {
+    bottomIndexRef.current = bottomIndex;
+  }, [bottomIndex]);
+
+  useEffect(() => {
+    nextBottomIndexRef.current = nextBottomIndex;
+  }, [nextBottomIndex]);
+
+  useEffect(() => {
+    imagesLengthRef.current = images.length;
+  }, [images.length]);
+
+  // Create interval once with empty deps
   useEffect(() => {
     const interval = setInterval(() => {
       setIsAnimating(true);
 
       setTimeout(() => {
-        // After animation, update indices
-        setTopIndex(bottomIndex);
-        setBottomIndex(nextBottomIndex);
-        setNextBottomIndex((prev) => (prev + 1) % images.length);
+        // After animation, update indices using refs for current values
+        const currentBottomIndex = bottomIndexRef.current;
+        const currentNextBottomIndex = nextBottomIndexRef.current;
+        const currentImagesLength = imagesLengthRef.current;
+
+        setTopIndex(currentBottomIndex);
+        setBottomIndex(currentNextBottomIndex);
+        setNextBottomIndex((prev) => (prev + 1) % currentImagesLength);
         setIsAnimating(false);
       }, 600);
     }, 3000);
     return () => clearInterval(interval);
-  }, [bottomIndex, nextBottomIndex, images.length]);
+  }, []); // Empty deps - interval created once
 
   return (
     <div className="w-full h-full flex items-center justify-center lg:justify-end">
