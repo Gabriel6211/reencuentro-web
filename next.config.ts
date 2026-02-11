@@ -1,7 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  images: {
+    remotePatterns: process.env.R2_HOSTNAME
+      ? [
+          {
+            protocol: 'https',
+            hostname: process.env.R2_HOSTNAME,
+          },
+        ]
+      : [],
+  },
+}
 
-export default nextConfig;
+export default nextConfig
