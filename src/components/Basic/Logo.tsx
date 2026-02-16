@@ -1,4 +1,5 @@
 import { Heart } from "lucide-react";
+import Link from "next/link";
 
 interface LogoProps {
   size?: "sm" | "md" | "lg";
@@ -14,7 +15,7 @@ const Logo = ({ size = "md", showText = true, className = "" }: LogoProps) => {
   };
 
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <Link href="/" className={`flex items-center gap-2 cursor-pointer ${className}`}>
       <div className="relative">
         {/* Paw print made with circles */}
         <svg
@@ -58,12 +59,12 @@ const Logo = ({ size = "md", showText = true, className = "" }: LogoProps) => {
       </div>
       {showText && (
         <span
-          className={`font-serif font-semibold ${sizes[size].text} text-foreground`}
+          className={`font-serif font-semibold text-[var(--foreground)] ${sizes[size].text}`}
         >
           Reencuentro
         </span>
       )}
-    </div>
+    </Link>
   );
 };
 

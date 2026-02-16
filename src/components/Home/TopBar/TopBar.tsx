@@ -8,16 +8,8 @@ const links = [
     href: "/",
   },
   {
-    label: "Perdidos",
-    href: "/perdidos",
-  },
-  {
-    label: "Encontrados",
-    href: "/encontrados",
-  },
-  {
-    label: "Adopciones",
-    href: "/adopciones",
+    label: "Mascotas",
+    href: "/mascotas",
   },
   {
     label: "Cómo funciona",
@@ -38,7 +30,7 @@ export default function TopBar() {
             {links.map((link) => (
               <li key={link.label}>
                 <Link
-                  className="text-sm font-medium hover:text-[var(--primary)] transition-colors"
+                  className="text-sm font-medium text-[var(--foreground)] hover:text-[var(--primary)] transition-colors"
                   href={link.href}
                 >
                   {link.label}

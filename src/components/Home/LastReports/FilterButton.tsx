@@ -2,18 +2,25 @@ interface FilterButtonProps {
   children: React.ReactNode;
   onClick: () => void;
   className?: string;
+  selected: boolean;
 }
 
 const buttonClassNames =
-  "rounded-full px-4 py-2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--primary-foreground)] cursor-pointer";
+  "rounded-full px-3 py-2 bg-[var(--muted)] text-[var(--foreground)] hover:text-[var(--primary-foreground)] hover:bg-[var(--primary-hover)] text-sm cursor-pointer";
+const selectedClassNames =
+  "bg-[var(--primary-hover)] text-[var(--primary-foreground)]";
 
 export default function FilterButton({
   children,
   onClick,
   className,
+  selected,
 }: FilterButtonProps) {
   return (
-    <button onClick={onClick} className={`${buttonClassNames} ${className}`}>
+    <button
+      onClick={onClick}
+      className={`${buttonClassNames} ${selected ? selectedClassNames : ""} ${className}`}
+    >
       {children}
     </button>
   );

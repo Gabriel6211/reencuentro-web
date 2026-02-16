@@ -8,8 +8,8 @@ export default function MainBanner() {
       <BannerText />
       {/* Image section */}
       <MultipleImages />
-      <div className="absolute z-0 bottom-0 left-0 w-24 h-24 rounded-full blur-3xl bg-[var(--primary)]/15" />
-      <div className="absolute z-0 top-0 right-0 w-24 h-24 rounded-full blur-3xl bg-[var(--secondary)]/30" />
+      <div className="absolute z-0 bottom-20 left-0 w-[200px] h-[200px] rounded-full blur-3xl bg-[var(--primary)]/30" />
+      <div className="absolute z-0 top-0 left-1/2 w-[200px] h-[200px] rounded-full blur-3xl bg-[var(--secondary)]/50" />
     </section>
   );
 }
