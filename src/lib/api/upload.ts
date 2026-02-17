@@ -38,9 +38,32 @@ export async function uploadFile(file: File): Promise<UploadResponse> {
   })
 
   if (!response.ok) {
-    const error = await response.json()
+    const error = await response.json().catch(() => ({ error: response.statusText }))
     throw new Error(error.error || 'Failed to upload file')
   }
 
-  return response.json()
+  // Handle empty responses (204 No Content)
+  if (response.status === 204) {
+    throw new Error('Unexpected empty response from upload endpoint')
+  }
+
+  // Check Content-Length header for empty responses
+  const contentLength = response.headers.get("Content-Length")
+  if (contentLength === "0") {
+    throw new Error('Unexpected empty response from upload endpoint')
+  }
+
+  // Try to parse JSON, handle empty body gracefully
+  try {
+    const text = await response.text()
+    if (!text || text.trim().length === 0) {
+      throw new Error('Unexpected empty response from upload endpoint')
+    }
+    return JSON.parse(text) as UploadResponse
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      throw new Error('Invalid JSON response from upload endpoint')
+    }
+    throw error
+  }
 }

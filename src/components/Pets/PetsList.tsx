@@ -12,7 +12,11 @@ import { getPosts } from "@/services/PostsService";
 const SKELETON_COUNT = 6;
 
 export default function PetsList() {
-  const { data: pets } = useQuery<PostRow[]>({
+  const {
+    data: pets,
+    isPending,
+    isError,
+  } = useQuery<PostRow[]>({
     queryKey: ["pets"],
     queryFn: () => getPosts(),
   });
@@ -30,13 +34,21 @@ export default function PetsList() {
         <div
           className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full pb-8 ${pets ? "fade-in-cards" : ""}`}
         >
-          {!pets
-            ? Array.from({ length: SKELETON_COUNT }, (_, i) => (
-                <PetCardSkeleton key={i} />
-              ))
-            : pets.map((pet, i) => (
-                <PetCard key={pet.id} {...pet} priorityImage={i === 0} />
-              ))}
+          {isPending ? (
+            Array.from({ length: SKELETON_COUNT }, (_, i) => (
+              <PetCardSkeleton key={i} />
+            ))
+          ) : !isError && pets ? (
+            pets.map((pet, i) => (
+              <PetCard key={pet.id} {...pet} priorityImage={i === 0} />
+            ))
+          ) : (
+            <div className="flex flex-col items-center justify-center gap-4">
+              <p className="text-[var(--muted-foreground)]">
+                No se encontraron mascotas.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>

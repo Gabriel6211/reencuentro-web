@@ -27,9 +27,11 @@ export default function ImageLightbox({
   const currentUrl = urls[index];
 
   const goPrev = useCallback(() => {
+    if (urls.length < 2) return;
     setIndex((i) => (i <= 0 ? urls.length - 1 : i - 1));
   }, [urls.length]);
   const goNext = useCallback(() => {
+    if (urls.length < 2) return;
     setIndex((i) => (i >= urls.length - 1 ? 0 : i + 1));
   }, [urls.length]);
 
@@ -44,24 +46,24 @@ export default function ImageLightbox({
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
-    const main = document.querySelector("main");
-    const scrollY = main?.scrollTop ?? 0;
+    const scrollContainer = document.querySelector(".main-scroll") as HTMLElement | null;
+    const scrollY = scrollContainer?.scrollTop ?? 0;
     document.body.style.overflow = "hidden";
-    if (main) {
-      main.style.overflow = "hidden";
-      main.style.position = "fixed";
-      main.style.top = `-${scrollY}px`;
-      main.style.width = "100%";
+    if (scrollContainer) {
+      scrollContainer.style.overflow = "hidden";
+      scrollContainer.style.position = "fixed";
+      scrollContainer.style.top = `-${scrollY}px`;
+      scrollContainer.style.width = "100%";
     }
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
-      if (main) {
-        main.style.overflow = "";
-        main.style.position = "";
-        main.style.top = "";
-        main.style.width = "";
-        main.scrollTop = scrollY;
+      if (scrollContainer) {
+        scrollContainer.style.overflow = "";
+        scrollContainer.style.position = "";
+        scrollContainer.style.top = "";
+        scrollContainer.style.width = "";
+        scrollContainer.scrollTop = scrollY;
       }
     };
   }, [handleKeyDown]);

@@ -1,12 +1,24 @@
 import { api } from "@/lib/api/client";
-import type { PostRow } from "@/types";
+import type { PostRow, PostType, PostStatus, AnimalType } from "@/types";
 
-export async function getPosts(params?: {
-  status?: string;
-  animalType?: string;
-}): Promise<PostRow[]> {
+export interface GetPostsParams {
+  status?: PostType | PostStatus;
+  animalType?: AnimalType;
+}
+
+export async function getPosts(params?: GetPostsParams): Promise<PostRow[]> {
+  const queryParams: Record<string, string> = {};
+  
+  if (params?.status) {
+    queryParams.status = params.status;
+  }
+  
+  if (params?.animalType) {
+    queryParams.animalType = params.animalType;
+  }
+  
   return api.get<PostRow[]>("/api/posts", {
-    params: params as Record<string, string> | undefined,
+    params: Object.keys(queryParams).length > 0 ? queryParams : undefined,
   });
 }
 

@@ -18,6 +18,7 @@ export default function FilterButton({
 }: FilterButtonProps) {
   return (
     <button
+      type="button"
       onClick={onClick}
       className={`${buttonClassNames} ${selected ? selectedClassNames : ""} ${className}`}
     >

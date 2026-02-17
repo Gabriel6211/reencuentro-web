@@ -88,7 +88,7 @@ export default function ImageCarousel({
   }
 
   return (
-    <div className="relative h-full w-full">
+    <div className="group relative h-full w-full">
       <div
         className={`embla overflow-hidden h-full ${className}`}
         ref={emblaRef}
@@ -114,7 +114,7 @@ export default function ImageCarousel({
       <button
         type="button"
         onClick={scrollPrev}
-        className={`cursor-pointer absolute left-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/55 text-white flex items-center justify-center transition-opacity duration-200 ${isImageHovered ? "opacity-100" : "opacity-0"} touch-manipulation`}
+        className={`cursor-pointer absolute left-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/55 text-white flex items-center justify-center transition-opacity duration-200 touch-manipulation ${isImageHovered ? "opacity-100" : "opacity-0"} focus-visible:opacity-100 group-focus-within:opacity-100`}
         aria-label="Imagen anterior"
       >
         <ChevronLeft className="w-5 h-5" />
@@ -122,7 +122,7 @@ export default function ImageCarousel({
       <button
         type="button"
         onClick={scrollNext}
-        className={`cursor-pointer absolute right-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/55 text-white flex items-center justify-center transition-opacity duration-200 ${isImageHovered ? "opacity-100" : "opacity-0"} touch-manipulation`}
+        className={`cursor-pointer absolute right-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/55 text-white flex items-center justify-center transition-opacity duration-200 touch-manipulation ${isImageHovered ? "opacity-100" : "opacity-0"} focus-visible:opacity-100 group-focus-within:opacity-100`}
         aria-label="Siguiente imagen"
       >
         <ChevronRight className="w-5 h-5" />

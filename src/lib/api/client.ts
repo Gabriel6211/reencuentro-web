@@ -26,7 +26,33 @@ async function request<T>(endpoint: string, config: RequestConfig = {}): Promise
     throw new Error(error.message ?? error.error ?? "Request failed");
   }
 
-  return response.json();
+  // Handle empty responses (204 No Content)
+  if (response.status === 204) {
+    return null as T;
+  }
+
+  // Check Content-Length header for empty responses
+  const contentLength = response.headers.get("Content-Length");
+  if (contentLength === "0") {
+    return null as T;
+  }
+
+  // Check if response has JSON content type
+  const contentType = response.headers.get("Content-Type");
+  if (contentType && !contentType.includes("application/json")) {
+    return null as T;
+  }
+
+  // Try to parse JSON, return null if parsing fails (empty body)
+  try {
+    const text = await response.text();
+    if (!text || text.trim().length === 0) {
+      return null as T;
+    }
+    return JSON.parse(text) as T;
+  } catch {
+    return null as T;
+  }
 }
 
 export const api = {

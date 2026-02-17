@@ -24,13 +24,6 @@ export default function PetDetailContent({ pet }: PetDetailContentProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [isImageHovered, setIsImageHovered] = useState(false);
 
-  const mapQuery = encodeURIComponent(`${pet.location}, Uruguay`);
-  const googleMapsApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-  const mapsEmbedUrl = googleMapsApiKey
-    ? `https://www.google.com/maps/embed/v1/place?key=${googleMapsApiKey}&q=${mapQuery}`
-    : null;
-  const mapsSearchUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
-
   const petFields = [
     { key: "pet_name", value: pet.pet_name },
     {

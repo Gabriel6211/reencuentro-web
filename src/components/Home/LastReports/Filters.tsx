@@ -7,7 +7,12 @@ interface FilterProps {
   selected: FilterOption;
 }
 
-const buttons = [
+interface FilterButtonConfig {
+  label: string;
+  value: FilterOption;
+}
+
+const buttons: FilterButtonConfig[] = [
   {
     label: "Todos",
     value: "all",
@@ -32,7 +37,7 @@ export default function Filters({ changeSelected, selected }: FilterProps) {
       {buttons.map((button) => (
         <FilterButton
           key={button.value}
-          onClick={() => changeSelected(button.value as FilterOption)}
+          onClick={() => changeSelected(button.value)}
           selected={selected === button.value}
         >
           {button.label}
