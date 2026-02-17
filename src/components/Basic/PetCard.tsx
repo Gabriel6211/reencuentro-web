@@ -7,7 +7,6 @@ import { PostRow } from "@/types";
 import { postTypeLabel, BUTTON_TEXT, RESOLVED_LABELS } from "@/lib/pet-labels";
 import { MapPin, Clock, Search } from "lucide-react";
 import { useRelativeTime } from "@/hooks/use-time";
-import Button from "./Button";
 import ImageCarousel from "./ImageCarousel";
 import ImageLightbox from "./ImageLightbox";
 
@@ -64,7 +63,7 @@ export default function PetCard(props: PetCardProps) {
               e.stopPropagation();
               setLightboxOpen(true);
             }}
-            className={`absolute inset-0 z-[5] flex items-center justify-center transition-opacity duration-200 focus:opacity-100 focus:outline-none ${isImageHovered ? "opacity-100" : "opacity-0"}`}
+            className={`absolute inset-0 z-[5] flex items-center justify-center transition-opacity duration-200 focus:opacity-100 focus:outline-none focus:pointer-events-auto ${isImageHovered ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
             aria-label="Ver imágenes a tamaño completo"
           >
             <span className="flex h-12 w-12 items-center justify-center rounded-full bg-black/50 text-white shadow-lg hover:bg-black/60">
@@ -109,12 +108,11 @@ export default function PetCard(props: PetCardProps) {
                 </p>
               </div>
             </div>
-            <Button
-              variant="custom"
-              className={`mt-auto w-full shrink-0 py-2 mt-4 font-semibold text-sm text-[var(--background)] bg-[var(--${post_type})] hover:brightness-110 cursor-pointer block`}
+            <span
+              className={`mt-auto w-full shrink-0 py-2 mt-4 font-semibold text-sm text-[var(--background)] bg-[var(--${post_type})] hover:brightness-110 cursor-pointer block text-center rounded-lg`}
             >
               {BUTTON_TEXT[post_type]}
-            </Button>
+            </span>
           </Link>
         </section>
       </Card>

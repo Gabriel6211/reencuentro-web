@@ -87,7 +87,7 @@ export default function PetDetailContent({ pet }: PetDetailContentProps) {
               e.stopPropagation();
               setLightboxOpen(true);
             }}
-            className={`absolute inset-0 z-[5] cursor-pointer flex items-center justify-center transition-opacity duration-200 focus:opacity-100 focus:outline-none ${isImageHovered ? "opacity-100" : "opacity-0"}`}
+            className={`absolute inset-0 z-[5] cursor-pointer flex items-center justify-center transition-opacity duration-200 focus:opacity-100 focus:outline-none focus:pointer-events-auto ${isImageHovered ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
             aria-label="Ver imágenes a tamaño completo"
           >
             <span className="flex h-12 w-12 items-center justify-center rounded-full bg-black/50 text-white shadow-lg hover:bg-black/60">
