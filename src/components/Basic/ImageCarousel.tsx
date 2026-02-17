@@ -16,6 +16,9 @@ type ImageCarouselProps = {
   className?: string;
   /** Set for the LCP image (e.g. first card above the fold) to load eagerly */
   priority?: boolean;
+  /** cover = fill area, cropped (cards); contain = full image visible, no crop (modal) */
+  objectFit?: "cover" | "contain";
+  isImageHovered?: boolean;
 };
 
 export default function ImageCarousel({
@@ -23,6 +26,8 @@ export default function ImageCarousel({
   alt,
   className = "",
   priority = false,
+  objectFit = "cover",
+  isImageHovered = false,
 }: ImageCarouselProps) {
   const urls = images ?? [];
   const hasImage = urls.length > 0;
@@ -41,14 +46,14 @@ export default function ImageCarousel({
       e.stopPropagation();
       emblaApi?.scrollPrev();
     },
-    [emblaApi]
+    [emblaApi],
   );
   const scrollNext = useCallback(
     (e: React.MouseEvent) => {
       e.stopPropagation();
       emblaApi?.scrollNext();
     },
-    [emblaApi]
+    [emblaApi],
   );
 
   const onSelect = useCallback(() => {
@@ -66,6 +71,9 @@ export default function ImageCarousel({
     };
   }, [emblaApi, onSelect]);
 
+  const objectClass =
+    objectFit === "contain" ? "object-contain" : "object-cover object-top";
+
   if (!multipleImages) {
     return (
       <Image
@@ -73,15 +81,18 @@ export default function ImageCarousel({
         alt={alt}
         fill
         sizes={IMAGE_SIZES}
-        className={`object-cover object-top ${className}`}
+        className={`${objectClass} ${className}`}
         priority={priority}
       />
     );
   }
 
   return (
-    <div className="group relative h-full w-full">
-      <div className={`embla overflow-hidden h-full ${className}`} ref={emblaRef}>
+    <div className="relative h-full w-full">
+      <div
+        className={`embla overflow-hidden h-full ${className}`}
+        ref={emblaRef}
+      >
         <div className="embla__container flex h-full touch-pan-y">
           {urls.map((url, i) => (
             <div
@@ -93,7 +104,7 @@ export default function ImageCarousel({
                 alt={`${alt} - imagen ${i + 1}`}
                 fill
                 sizes={IMAGE_SIZES}
-                className="object-cover object-top"
+                className={objectClass}
                 priority={priority && i === 0}
               />
             </div>
@@ -103,7 +114,7 @@ export default function ImageCarousel({
       <button
         type="button"
         onClick={scrollPrev}
-        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/55 text-white flex items-center justify-center transition-opacity duration-200 opacity-0 group-hover:opacity-100 touch-manipulation"
+        className={`cursor-pointer absolute left-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/55 text-white flex items-center justify-center transition-opacity duration-200 ${isImageHovered ? "opacity-100" : "opacity-0"} touch-manipulation`}
         aria-label="Imagen anterior"
       >
         <ChevronLeft className="w-5 h-5" />
@@ -111,7 +122,7 @@ export default function ImageCarousel({
       <button
         type="button"
         onClick={scrollNext}
-        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/55 text-white flex items-center justify-center transition-opacity duration-200 opacity-0 group-hover:opacity-100 touch-manipulation"
+        className={`cursor-pointer absolute right-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/55 text-white flex items-center justify-center transition-opacity duration-200 ${isImageHovered ? "opacity-100" : "opacity-0"} touch-manipulation`}
         aria-label="Siguiente imagen"
       >
         <ChevronRight className="w-5 h-5" />
@@ -125,7 +136,7 @@ export default function ImageCarousel({
               e.stopPropagation();
               emblaApi?.scrollTo(i);
             }}
-            className={`h-1.5 rounded-full transition-all duration-200 touch-manipulation ${
+            className={`cursor-pointer h-1.5 rounded-full transition-all duration-200 touch-manipulation ${
               i === selectedIndex
                 ? "w-4 bg-white"
                 : "w-1.5 bg-white/60 hover:bg-white/80"

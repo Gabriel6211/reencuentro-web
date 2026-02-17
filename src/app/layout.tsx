@@ -31,13 +31,15 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-screen flex-col overflow-hidden`}
       >
         <QueryProvider>
-          <TopBar />
-          <main className="flex-1 flex flex-col min-h-0 overflow-y-auto overflow-x-hidden pt-[4.5rem]">
-            <div className="flex flex-col w-full flex-1">
-              {children}
-            </div>
-            <Footer />
-          </main>
+          <div className="main-scroll flex-1 flex flex-col min-h-0 overflow-y-auto overflow-x-hidden">
+            <TopBar />
+            <main className="flex-1 flex flex-col min-h-0">
+              <div className="flex flex-col w-full flex-1">
+                {children}
+              </div>
+              <Footer />
+            </main>
+          </div>
         </QueryProvider>
       </body>
     </html>

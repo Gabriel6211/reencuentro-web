@@ -96,6 +96,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Reserve scrollbar space so main content width matches TopBar (no horizontal shift) */
+.main-scroll {
+  scrollbar-gutter: stable;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
