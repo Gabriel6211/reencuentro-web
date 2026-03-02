@@ -4,25 +4,45 @@ export type FilterOption = "all" | "lost" | "found" | "adoption";
 
 interface FilterProps {
   changeSelected: (selected: FilterOption) => void;
+  selected: FilterOption;
 }
 
-const buttonClassNames = "rounded-full px-4 py-2";
+interface FilterButtonConfig {
+  label: string;
+  value: FilterOption;
+}
 
-export default function Filters({ changeSelected }: FilterProps) {
+const buttons: FilterButtonConfig[] = [
+  {
+    label: "Todos",
+    value: "all",
+  },
+  {
+    label: "Perdidos",
+    value: "lost",
+  },
+  {
+    label: "Encontrados",
+    value: "found",
+  },
+  {
+    label: "En adopción",
+    value: "adoption",
+  },
+];
+
+export default function Filters({ changeSelected, selected }: FilterProps) {
   return (
     <div className="flex flex-row items-center justify-center gap-4">
-      <FilterButton onClick={() => changeSelected("all")}>
-        Todos
-      </FilterButton>
-      <FilterButton  onClick={() => changeSelected("lost")}>
-        Perdidos
-      </FilterButton>
-      <FilterButton onClick={() => changeSelected("found" )} className={buttonClassNames}>
-        Encontrados
-      </FilterButton>
-      <FilterButton onClick={() => changeSelected("adoption")} className={buttonClassNames}>
-        En adopción
-      </FilterButton>
+      {buttons.map((button) => (
+        <FilterButton
+          key={button.value}
+          onClick={() => changeSelected(button.value)}
+          selected={selected === button.value}
+        >
+          {button.label}
+        </FilterButton>
+      ))}
     </div>
   );
 }

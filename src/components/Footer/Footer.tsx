@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Logo from "../Basic/Logo";
 
 const sections = [
@@ -74,9 +75,9 @@ export default function Footer() {
               {section.links.map((link) => (
                 <li
                   key={link.title}
-                  className="text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-all duration-300"
+                  className="text-sm text-[var(--muted-foreground)] cursor-pointer hover:text-[var(--foreground)] transition-all duration-300"
                 >
-                  <a href={link.href}>{link.title}</a>
+                  <Link href={link.href}>{link.title}</Link>
                 </li>
               ))}
             </ul>

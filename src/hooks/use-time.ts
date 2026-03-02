@@ -1,4 +1,4 @@
-export const useRelativeTime = (date: Date) => {
+export const useRelativeTime = (date: string) => {
     const now = new Date();
     const diffMs = now.getTime() - new Date(date).getTime();
     const diffHours = diffMs / (1000 * 60 * 60);

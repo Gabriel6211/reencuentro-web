@@ -2,43 +2,58 @@
 import Button from "@/components/Basic/Button";
 import Filters, { type FilterOption } from "./Filters";
 import PetCard from "@/components/Basic/PetCard";
-import { ReportItem } from "@/types";
+import { PostRow } from "@/types";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 
-const lastReports: ReportItem[] = [
+const lastReports: PostRow[] = [
   {
-    id: 1,
-    name: "Firulais",
-    photo: "/images/pets/Paco_1.jpeg",
-    status: "lost",
+    id: "1",
+    user_id: "mock-user-1",
+    title: "Firulais perdido en San Carlos",
+    content: "Perro perdido, responde al nombre Firulais.",
+    image_urls: ["/images/pets/Paco_1.jpeg"],
     location: "San Carlos",
-    date: new Date(),
-    animalType: "dog",
-    gender: "male",
-    age: 1,
+    post_type: "lost",
+    status: "active",
+    date_lost_or_found: new Date().toISOString(),
+    pet_name: "Firulais",
+    pet_age: 1,
+    pet_gender: "male",
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   },
   {
-    id: 2,
-    name: "Michi",
-    photo: "/images/pets/Lola_1.jpeg",
-    status: "found",
+    id: "2",
+    user_id: "mock-user-2",
+    title: "Michi encontrado",
+    content: "Gata encontrada en San Carlos.",
+    image_urls: ["/images/pets/Lola_1.jpeg"],
     location: "San Carlos",
-    date: new Date(),
-    animalType: "cat",
-    gender: "female",
-    age: 2,
+    post_type: "found",
+    status: "active",
+    date_lost_or_found: new Date().toISOString(),
+    pet_name: "Michi",
+    pet_age: 2,
+    pet_gender: "female",
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   },
   {
-    id: 3,
-    name: "Pelusa",
-    photo: "/images/pets/Romeo_1.jpeg",
-    status: "adoption",
+    id: "3",
+    user_id: "mock-user-3",
+    title: "Pelusa en adopción",
+    content: "Pelusa busca familia.",
+    image_urls: ["/images/pets/Romeo_1.jpeg"],
     location: "San Carlos",
-    date: new Date(),
-    animalType: "other",
-    gender: "male",
-    age: 3,
+    post_type: "adoption",
+    status: "active",
+    date_lost_or_found: new Date().toISOString(),
+    pet_name: "Pelusa",
+    pet_age: 3,
+    pet_gender: "male",
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   },
 ];
 
@@ -54,11 +69,15 @@ export default function LastReports() {
         <p className="text-[var(--muted-foreground)] text-xl">
           Mascotas que necesitan tu ayuda ahora mismo
         </p>
-        <Filters changeSelected={setSelected} />
+        <Filters selected={selected} changeSelected={setSelected} />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full">
-        {lastReports.map((report) => (
-          <PetCard key={report.id} {...report} />
+        {lastReports.map((post, i) => (
+          <PetCard
+            key={post.id}
+            {...post}
+            priorityImage={i === 0}
+          />
         ))}
       </div>
       <Button

@@ -15,7 +15,7 @@ export default function BannerText() {
         />
         <p>Conectando familias con sus mascotas</p>
       </div>
-      <h1 className="text-4xl font-bold text-balance">
+      <h1 className="text-4xl font-bold text-balance text-[var(--foreground)]">
         Cada mascota merece{" "}
         <span className="text-[var(--primary)]">volver a casa</span>
       </h1>

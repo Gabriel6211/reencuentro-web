@@ -8,16 +8,8 @@ const links = [
     href: "/",
   },
   {
-    label: "Perdidos",
-    href: "/perdidos",
-  },
-  {
-    label: "Encontrados",
-    href: "/encontrados",
-  },
-  {
-    label: "Adopciones",
-    href: "/adopciones",
+    label: "Mascotas",
+    href: "/mascotas",
   },
   {
     label: "Cómo funciona",
@@ -27,7 +19,7 @@ const links = [
 
 export default function TopBar() {
   return (
-    <header className="top-bar fixed inset-x-0 top-0 backdrop-blur z-50 bg-[var(--background)] border-b border-[var(--border)] p-4 w-full">
+    <header className="top-bar sticky top-0 z-50 backdrop-blur bg-[var(--background)] border-b border-[var(--border)] py-4 w-full shrink-0">
       <div className="container flex items-center">
         <Logo className="mr-5" />
         <nav
@@ -38,7 +30,7 @@ export default function TopBar() {
             {links.map((link) => (
               <li key={link.label}>
                 <Link
-                  className="text-sm font-medium hover:text-[var(--primary)] transition-colors"
+                  className="text-sm font-medium text-[var(--foreground)] hover:text-[var(--primary)] transition-colors"
                   href={link.href}
                 >
                   {link.label}

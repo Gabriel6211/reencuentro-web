@@ -5,13 +5,11 @@ import Alerts from "@/components/Home/Alerts/Alerts";
 
 export default function Home() {
   return (
-    <div>
-      <main className="container flex flex-col items-center justify-center">
-        <MainBanner />
-        <HowToHelp />
-        <LastReports />
-        <Alerts />
-      </main>
-    </div>
+    <section className="container flex flex-col items-center w-full">
+      <MainBanner />
+      <HowToHelp />
+      <LastReports />
+      <Alerts />
+    </section>
   );
 }

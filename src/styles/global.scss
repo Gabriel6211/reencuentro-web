@@ -56,6 +56,20 @@ body {
   h6 {
     font-family: var(--font-serif);
   }
+
+  /* Remove default blue outline on inputs */
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+  }
+
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--focus-ring-color, #2563eb);
+    outline-offset: 2px;
+  }
 }
 
 @layer utilities {
@@ -89,6 +103,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Reserve scrollbar space so main content width matches TopBar (no horizontal shift) */
+.main-scroll {
+  scrollbar-gutter: stable;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -104,6 +123,20 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: color-mix(in oklab, var(--muted-foreground) 50%, transparent);
+}
+
+/* Cards grid fade-in (skeleton → content transition) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in-cards {
+  animation: fadeIn 0.3s ease-out forwards;
 }
 
 /* MultipleImages carousel keyframes */
@@ -130,4 +163,20 @@ html {
     opacity: 0;
     z-index: 15;
   }
+}
+
+/* PetCard carousel (Embla) */
+.embla {
+  --slide-spacing: 0;
+  --slide-size: 100%;
+}
+.embla__container {
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+.embla__slide {
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+  position: relative;
+  height: 100%;
 }
