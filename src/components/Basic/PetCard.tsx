@@ -109,7 +109,7 @@ export default function PetCard(props: PetCardProps) {
               </div>
             </div>
             <span
-              className={`mt-auto w-full shrink-0 py-2 mt-4 font-semibold text-sm text-[var(--background)] bg-[var(--${post_type})] hover:brightness-110 cursor-pointer block text-center rounded-lg`}
+              className={`w-full shrink-0 py-2 mt-auto font-semibold text-sm text-[var(--background)] bg-[var(--${post_type})] hover:brightness-110 cursor-pointer block text-center rounded-lg`}
             >
               {BUTTON_TEXT[post_type]}
             </span>
